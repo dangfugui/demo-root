@@ -1,13 +1,12 @@
-package com.dang.demo.dubboclient;
+package com.dang.demo.dubboservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication()
-public class DubboClientApplication {
+@SpringBootApplication
+public class DubboServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DubboClientApplication.class, args);
+		SpringApplication.run(DubboServiceApplication.class, args);
 	}
-
 }
