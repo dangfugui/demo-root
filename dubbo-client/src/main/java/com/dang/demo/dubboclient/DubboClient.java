@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Order(1)
-public class DubboClient implements CommandLineRunner {
+public class  DubboClient implements CommandLineRunner {
 
     public void run(String... args) throws Exception {
 

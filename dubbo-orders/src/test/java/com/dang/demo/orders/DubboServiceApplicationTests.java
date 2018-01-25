@@ -1,4 +1,4 @@
-package com.dang.demo.dubboservice;
+package com.dang.demo.orders;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
