@@ -1,4 +1,4 @@
-package com.dang.demo.orders.service.impl;
+package com.dang.demo.kafka.service.impl;
 
 import com.dang.demo.rpc.api.bean.Order;
 import com.dang.demo.rpc.api.service.OrderService;

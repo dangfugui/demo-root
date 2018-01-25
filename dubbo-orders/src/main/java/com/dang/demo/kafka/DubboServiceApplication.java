@@ -1,4 +1,4 @@
-package com.dang.demo.orders;
+package com.dang.demo.kafka;
 
 import java.io.IOException;
 
