@@ -1,5 +1,4 @@
-package dang.demo.sharding.shardingjdbc.module.user;
-
+package dang.demo.sharding.shardingjdbc.module.order;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,14 +12,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "jdbc_user")
+@Table(name = "t_order_item")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
-    private Long userId;
-    private String userName;
+    @Column(name = "order_item_id")
+    private Long orderItemId;
+    private Long orderId;
+    private String name;
+    private Double price;
+    private long count;
 }

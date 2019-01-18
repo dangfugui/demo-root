@@ -1,5 +1,4 @@
-package dang.demo.sharding.shardingjdbc.module.user;
-
+package dang.demo.sharding.shardingjdbc.module.order;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,16 +10,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
-@Table(name = "jdbc_user")
+@Table(name = "t_order")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
+    @Column(name = "order_id")
+    private Long orderId;
     private Long userId;
-    private String userName;
+    private String orderName;
+    private Date createTime;
 }

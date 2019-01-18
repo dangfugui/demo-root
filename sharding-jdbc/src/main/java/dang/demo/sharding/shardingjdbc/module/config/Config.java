@@ -1,5 +1,4 @@
-package dang.demo.sharding.shardingjdbc.module.user;
-
+package dang.demo.sharding.shardingjdbc.module.config;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,15 +11,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name = "jdbc_user")
+@Table(name = "t_config")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Config {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
-    private Long userId;
-    private String userName;
+    @Column(name = "config_id")
+    private Long configId;
+    private String name;
+    private String value;
 }
