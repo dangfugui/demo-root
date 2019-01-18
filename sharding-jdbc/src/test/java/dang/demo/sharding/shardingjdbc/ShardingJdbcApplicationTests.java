@@ -1,4 +1,4 @@
-package com.dang.demo.duerosbot;
+package dang.demo.sharding.shardingjdbc;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,10 +7,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DuerosBotApplicationTests {
+public class ShardingJdbcApplicationTests {
 
 	@Test
 	public void contextLoads() {
 	}
 
 }
+
