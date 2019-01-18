@@ -11,7 +11,7 @@ public class TestSchedule {
 
     @Scheduled(cron = "*/30 * * * * ?")
     @Async
-    public void testLog(){
+    public void testLog() {
         log.info("test log");
     }
 }

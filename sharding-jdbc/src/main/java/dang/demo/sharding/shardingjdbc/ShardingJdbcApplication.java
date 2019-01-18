@@ -10,9 +10,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("dang.demo.sharding.shardingjdbc")
 public class ShardingJdbcApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ShardingJdbcApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ShardingJdbcApplication.class, args);
+    }
 
 }
 

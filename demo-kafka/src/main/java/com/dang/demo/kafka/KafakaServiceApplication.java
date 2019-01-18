@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class KafakaServiceApplication {
 
-	public static void main(String[] args) throws IOException {
-		 SpringApplication.run(KafakaServiceApplication.class, args);
-	}
+    public static void main(String[] args) throws IOException {
+        SpringApplication.run(KafakaServiceApplication.class, args);
+    }
 }

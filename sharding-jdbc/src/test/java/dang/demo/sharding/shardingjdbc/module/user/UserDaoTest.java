@@ -12,11 +12,11 @@ public class UserDaoTest extends IntegrationTest {
     private UserDao userDao;
 
     @Test
-    public void add(){
+    public void add() {
         User user = new User();
         user.setUserName("dang");
         user = userDao.save(user);
-        Assert.assertEquals("dang",userDao.getOne(user.getId()).getUserName());
+        Assert.assertEquals("dang", userDao.getOne(user.getId()).getUserName());
         userDao.deleteById(user.getId());
         Assert.assertNull(userDao.getOne(user.getId()));
     }
