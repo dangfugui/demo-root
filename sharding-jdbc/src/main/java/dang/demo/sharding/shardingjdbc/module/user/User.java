@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "jdbc_user")
+@Table(name = "t_user")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

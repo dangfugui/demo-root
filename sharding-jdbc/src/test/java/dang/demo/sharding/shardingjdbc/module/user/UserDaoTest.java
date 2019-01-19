@@ -18,8 +18,8 @@ public class UserDaoTest extends IntegrationTest {
         user = userDao.save(user);
         Long userId = user.getUserId();
         Assert.assertEquals("dang", userDao.getOne(user.getUserId()).getUserName());
-        userDao.deleteById(userId);
-        Assert.assertFalse(userDao.findById(userId).isPresent());
+        userDao.delete(userId);
+        Assert.assertNull(userDao.findOne(userId));
     }
 
 }

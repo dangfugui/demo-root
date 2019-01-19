@@ -6,8 +6,8 @@ import io.shardingsphere.api.algorithm.sharding.standard.PreciseShardingAlgorith
 import java.util.Collection;
 
 /**
- * 分表算法：
- * ==和IN的分表算法实现
+ *   分表算法：
+ *     ==和IN的分表算法实现
  */
 public final class TablePreciseShardingAlgorithm implements PreciseShardingAlgorithm<Long> {
 

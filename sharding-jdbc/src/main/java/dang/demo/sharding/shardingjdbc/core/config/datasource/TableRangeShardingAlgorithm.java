@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Between的分表算法实现
+ *     Between的分表算法实现
  */
 public final class TableRangeShardingAlgorithm implements RangeShardingAlgorithm<Long> {
 
