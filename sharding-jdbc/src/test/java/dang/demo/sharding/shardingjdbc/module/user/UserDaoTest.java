@@ -8,18 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserDaoTest extends IntegrationTest {
 
-    @Autowired
-    private UserDao userDao;
+//    @Autowired
+//    private UserDao userDao;
 
     @Test
     public void add() {
-        User user = new User();
-        user.setUserName("dang");
-        user = userDao.save(user);
-        Long userId = user.getUserId();
-        Assert.assertEquals("dang", userDao.getOne(user.getUserId()).getUserName());
-        userDao.delete(userId);
-        Assert.assertNull(userDao.findOne(userId));
+//        User user = new User();
+//        user.setUserName("dang");
+//        user = userDao.save(user);
+//        Long userId = user.getUserId();
+//        Assert.assertEquals("dang", userDao.getOne(user.getUserId()).getUserName());
+//        userDao.deleteById(userId);
+//        Assert.assertFalse(userDao.findById(userId).isPresent());
     }
 
 }

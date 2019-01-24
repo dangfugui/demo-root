@@ -19,7 +19,6 @@ import javax.persistence.Table;
 @AllArgsConstructor
 public class Config {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "config_id")
     private Long configId;
     private String name;

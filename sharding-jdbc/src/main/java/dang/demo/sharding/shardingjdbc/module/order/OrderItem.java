@@ -18,7 +18,6 @@ import javax.persistence.Table;
 @AllArgsConstructor
 public class OrderItem {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "order_item_id")
     private Long orderItemId;
     private Long orderId;

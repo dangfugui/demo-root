@@ -1,6 +1,5 @@
 package dang.demo.sharding.shardingjdbc.schedule;
 
-import dang.demo.sharding.shardingjdbc.core.dao.JpaManager;
 import dang.demo.sharding.shardingjdbc.core.unit.Skill;
 import dang.demo.sharding.shardingjdbc.module.config.Config;
 import dang.demo.sharding.shardingjdbc.module.config.ConfigDao;
@@ -11,20 +10,25 @@ import dang.demo.sharding.shardingjdbc.module.order.OrderItemDao;
 import dang.demo.sharding.shardingjdbc.module.user.User;
 import dang.demo.sharding.shardingjdbc.module.user.UserDao;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.SQLQuery;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.math.BigInteger;
 import java.util.Date;
 
 @Component
 @Slf4j
-public class ToolSchedule {
+public class ToolSchedule implements ApplicationRunner {
 
-    private static long count = 0;
+    private static long count = 1;
 
     @Autowired
     private UserDao userDao;
@@ -34,40 +38,40 @@ public class ToolSchedule {
     private OrderDao orderDao;
     @Autowired
     private OrderItemDao orderItemDao;
-    @Autowired
-    private JpaManager jpaManager;
+    @PersistenceContext
+    private EntityManager entityManager;
 
-    private User user;
-    private Config config;
-    private Order order;
-    private OrderItem orderItem;
+    long orderCount = 2;
+    long orderItemCount = 2;
 
 
-    @Scheduled(cron = "*/10 * * * * ?")
+    //    @Scheduled(cron = "*/5 * * * * ?")
+    @Scheduled(fixedDelay = 2000)
     @Async
     @Transactional
     public void addToDB() {
-        SQLQuery query = jpaManager.getSession().createSQLQuery("SELECT 1 FROM DUAL");
-        count++;
-        user = new User(count, "dang" + count);
+        log.info("addToDB count:{}", ++count);
+//        Config config = new Config(count, "config" + count, String.valueOf(count));
+//        Skill.tryDo(() -> configDao.save(config));
+        User user = new User(count, "dang" + count);
         Skill.tryDo(() -> userDao.save(user));
-        config = new Config(null, "config" + count, String.valueOf(count));
-        Skill.tryDo(() -> configDao.save(config));
-        order = new Order(null, user.getUserId(), "order" + config, new Date());
-        Skill.tryDo(() -> orderDao.save(order));
-        orderItem = new OrderItem(null, order.getOrderId(), "orderItem" + count, 1.1, 1);
-        Skill.tryDo(() -> orderItemDao.save(orderItem));
+        for (int o = 0; o < orderCount; o++) {
+            long orderId = count * orderCount + o;
+            Order order = new Order(orderId, count, "order:" + orderId, new Date());
+            Skill.tryDo(() -> orderDao.save(order));
+            for (int i = 0; i < orderItemCount; i++) {
+                long orderItemId = orderId * orderItemCount + i;
+                OrderItem orderItem = new OrderItem(orderItemId, orderId, "orderItem:" + orderItemId, 1.1, count);
+                Skill.tryDo(() -> orderItemDao.save(orderItem));
+            }
+        }
     }
 
 
-    //    @Scheduled(cron = "*/10 * * * * ?")
-    @Async
-    @Transactional
-    public void test() {
-        count++;
-        order = new Order(null, 1L, "order" + config, new Date());
-        Skill.tryDo(() -> orderDao.save(order));
-        orderItem = new OrderItem(null, 1L, "orderItem" + count, 1.1, 1);
-        Skill.tryDo(() -> orderItemDao.save(orderItem));
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+        Query query = entityManager.createNativeQuery("select max(user_id) from t_user;");
+        BigInteger max = (BigInteger) query.getResultList().get(0);
+        count = max == null ? 0 : max.longValue();
     }
 }
