@@ -21,6 +21,7 @@ public class OrderItem {
     @Column(name = "order_item_id")
     private Long orderItemId;
     private Long orderId;
+    private Long userId;
     private String name;
     private Double price;
     private long count;

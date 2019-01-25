@@ -51,8 +51,8 @@ public class ToolSchedule implements ApplicationRunner {
     @Transactional
     public void addToDB() {
         log.info("addToDB count:{}", ++count);
-//        Config config = new Config(count, "config" + count, String.valueOf(count));
-//        Skill.tryDo(() -> configDao.save(config));
+        Config config = new Config(count, "config" + count, String.valueOf(count));
+        Skill.tryDo(() -> configDao.save(config));
         User user = new User(count, "dang" + count);
         Skill.tryDo(() -> userDao.save(user));
         for (int o = 0; o < orderCount; o++) {
@@ -61,7 +61,7 @@ public class ToolSchedule implements ApplicationRunner {
             Skill.tryDo(() -> orderDao.save(order));
             for (int i = 0; i < orderItemCount; i++) {
                 long orderItemId = orderId * orderItemCount + i;
-                OrderItem orderItem = new OrderItem(orderItemId, orderId, "orderItem:" + orderItemId, 1.1, count);
+                OrderItem orderItem = new OrderItem(orderItemId, orderId, count, "orderItem:" + orderItemId, 1.1, count);
                 Skill.tryDo(() -> orderItemDao.save(orderItem));
             }
         }
